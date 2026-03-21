@@ -1,0 +1,96 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ink: #1a1612;
+  --ink-soft: #5c5347;
+  --ink-muted: #9c9085;
+  --paper: #fdf8f2;
+  --paper-2: #f5ede0;
+  --paper-3: #ede0cd;
+  --surface: #ffffff;
+  --saffron: #e8720c;
+  --saffron-lt: #fff0e6;
+  --saffron-dk: #c85e08;
+  --teal: #0e7c6b;
+  --teal-lt: #e2f5f1;
+  --green: #2d7a3a;
+  --green-lt: #e8f5eb;
+  --red: #c0392b;
+  --red-lt: #fdecea;
+  --blue: #1a5fa8;
+  --blue-lt: #e8f0fb;
+  --border: rgba(90, 70, 50, 0.15);
+  --shadow: 0 2px 16px rgba(90, 60, 20, 0.10);
+  --radius: 12px;
+  --header-bg: #1a1612;
+}
+
+[data-theme="dark"] {
+  --ink: #f0e8dc;
+  --ink-soft: #c4b8a8;
+  --ink-muted: #8a7d6e;
+  --paper: #1c1814;
+  --paper-2: #252018;
+  --paper-3: #2e2820;
+  --surface: #211d18;
+  --saffron: #f08030;
+  --saffron-lt: #2a1f10;
+  --saffron-dk: #e8720c;
+  --teal: #2dbfa8;
+  --teal-lt: #0d2420;
+  --green: #4caf6a;
+  --green-lt: #0d2010;
+  --red: #e05545;
+  --red-lt: #2a0f0f;
+  --blue: #5b9bd5;
+  --blue-lt: #0d1a2a;
+  --border: rgba(200, 160, 100, 0.12);
+  --shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  --header-bg: #110f0c;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+  40%           { transform: translateY(-7px); opacity: 1; }
+}
+
+@keyframes fadeText {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+@keyframes bookPulse {
+  0%, 100% { transform: translate(-50%, -50%) scaleY(1); }
+  50%      { transform: translate(-50%, -52%) scaleY(1.06); }
+}
