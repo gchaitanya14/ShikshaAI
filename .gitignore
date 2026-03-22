@@ -1,1 +1,26 @@
-backend/.env
+# Environment variables
+
+.env
+
+# Python
+
+**pycache**/
+*.py[cod]
+venv/
+.venv/
+
+# Data & vector DB (important)
+
+data/
+backend/chroma_db/
+
+# Node modules & build
+
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+
+# Vite cache
+
+.vite/
