@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import SubjectPills from './SubjectPills'
-import { ingestPDF } from '../api'
+import { ingestPDF } from '../api/client.js'
 
 export default function IngestPanel({ subjects, selectedSubject, onSelectSubject, onRefreshSubjects }) {
   const [file, setFile] = useState(null)
@@ -11,12 +11,14 @@ export default function IngestPanel({ subjects, selectedSubject, onSelectSubject
   const fileRef = useRef()
 
   function handleFileChange(f) {
-    if (!f) return
-    setFile(f)
-    if (!subjectInput) {
-      setSubjectInput(f.name.replace('.pdf', '').replace(/\s+/g, '_').toLowerCase())
-    }
+  if (!f) return
+  setFile(f)
+  if (!subjectInput) {
+    setSubjectInput(f.name.replace('.pdf', '').replace(/\s+/g, '_').toLowerCase())
   }
+  // Reset input so same file can be re-selected if needed
+  if (fileRef.current) fileRef.current.value = ''
+}
 
   async function handleIngest() {
     setAlert(null)
@@ -52,13 +54,17 @@ export default function IngestPanel({ subjects, selectedSubject, onSelectSubject
           const f = e.dataTransfer.files[0]
           if (f?.name.endsWith('.pdf')) handleFileChange(f)
         }}
-        onClick={() => fileRef.current?.click()}
+        onClick={(e) => {
+        e.stopPropagation()
+        fileRef.current?.click()
+      }}
       >
         <input
           ref={fileRef}
           type="file"
           accept=".pdf"
           style={{ display: 'none' }}
+          onClick={(e) => e.stopPropagation()}
           onChange={e => handleFileChange(e.target.files[0])}
         />
         <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.3rem' }}>📄</span>
